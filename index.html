@@ -5,14 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing | Azienda</title>
-  <meta name="description" content="Landing page con accesso ai siti del gruppo aziendale">
 
   <!-- Font Awesome per icone social -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     /* =====================
-       RESET E BASE
+       VARIABILI COLORI
+    ===================== */
+    :root {
+      --background-color: #1e3a8a; /* Sfondo blu modificabile */
+      --text-color: #ffffff;
+      --accent-color: #e63946;
+      --footer-bg: rgba(0, 0, 0, 0.8);
+    }
+
+    /* =====================
+       RESET BASE
     ===================== */
     * {
       margin: 0;
@@ -21,47 +30,26 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    :root {
-      --text-color: #ffffff;
-      --accent-color: #e63946;
-      --footer-bg: rgba(0, 0, 0, 0.8);
-    }
-
     body {
       min-height: 100vh;
-      background: url("sfondo-landing.jpg") no-repeat center center/cover;
+      background: var(--background-color);
       color: var(--text-color);
       display: flex;
       flex-direction: column;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
       align-items: center;
-      position: relative;
-      z-index: 1;
-      padding: 50px 20px;
-      text-align: center;
+      justify-content: flex-start;
+      padding-top: 50px;
     }
 
     h1 {
       font-size: 2.8rem;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     p.subtitle {
       margin-bottom: 50px;
+      text-align: center;
       opacity: 0.8;
     }
 
@@ -111,38 +99,36 @@
        FOOTER
     ===================== */
     footer {
+      width: 100%;
       background: var(--footer-bg);
       padding: 50px 20px 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 40px;
-      max-width: 1100px;
-      margin: auto;
+      text-align: center;
     }
 
     .footer-section h3 {
-      margin-bottom: 15px;
       font-size: 1.1rem;
       text-transform: uppercase;
+      margin-bottom: 15px;
       color: var(--accent-color);
     }
 
     .footer-section p,
-    .footer-section a {
-      color: #fff;
-      opacity: 0.9;
+    .footer-section a,
+    .contact-item span {
       font-size: 0.95rem;
+      opacity: 0.9;
+      color: var(--text-color);
     }
 
     .contact-item {
       display: flex;
       align-items: center;
       gap: 10px;
+      justify-content: center;
       margin-bottom: 10px;
     }
 
@@ -153,7 +139,7 @@
     .social-icons {
       display: flex;
       gap: 12px;
-      margin-top: 10px;
+      justify-content: center;
     }
 
     .social-icons a {
@@ -175,19 +161,19 @@
     }
 
     .footer-bottom {
-      margin-top: 30px;
-      padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 20px;
+      width: 100%;
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
       font-size: 0.85rem;
+      flex-wrap: wrap;
     }
 
     .footer-bottom a {
-      color: #fff;
+      color: var(--text-color);
       text-decoration: none;
-      margin-left: 10px;
     }
 
     /* =====================
@@ -205,95 +191,67 @@
       .logo img {
         width: 120px;
       }
-
-      .footer-container {
-        text-align: center;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <main>
-    <div class="container">
+  <h1>Scopri le nostre destinazioni</h1>
+  <p class="subtitle">Seleziona uno dei nostri siti</p>
 
-      <h1>Scopri le nostre destinazioni</h1>
-      <p class="subtitle">Seleziona uno dei nostri siti</p>
-
-      <div class="pyramid">
-        <!-- Logo vertice -->
-        <div class="pyramid-top">
-          <img src="doubleexgroup.png" alt="Logo principale">
-        </div>
-
-        <!-- Loghi cliccabili -->
-        <div class="pyramid-bottom">
-          <a href="https://doubleexhome.com/" target="_blank" class="logo">
-            <img src="doubleexhome 3.png" alt="Sito 1">
-          </a>
-          <a href="https://dinnerinthesky.it/" target="_blank" class="logo">
-            <img src="dinner 2.png" alt="Sito 2">
-          </a>
-        </div>
-      </div>
-
+  <div class="pyramid">
+    <!-- Logo principale -->
+    <div class="pyramid-top">
+      <img src="logo-vertice.png" alt="Logo principale">
     </div>
-  </main>
+
+    <!-- Loghi cliccabili -->
+    <div class="pyramid-bottom">
+      <a href="URL_SITO_1" target="_blank" class="logo">
+        <img src="logo1.png" alt="Sito 1">
+      </a>
+      <a href="URL_SITO_2" target="_blank" class="logo">
+        <img src="logo2.png" alt="Sito 2">
+      </a>
+    </div>
+  </div>
 
   <footer>
-    <div class="footer-container">
-
-      <!-- Contatti -->
-      <div class="footer-section">
-        <h3>Contatti</h3>
-        <div class="contact-item">
-          <i class="fas fa-phone"></i> <span>+39 000 000 0000</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i> <span>info@azienda.com</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i> <span>Via Indirizzo, Città</span>
-        </div>
+    <!-- Contatti -->
+    <div class="footer-section">
+      <h3>Contatti</h3>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i><span>+39 000 000 0000</span>
       </div>
-
-      <!-- Informazioni azienda -->
-      <div class="footer-section">
-        <h3>Azienda</h3>
-        <p>P.IVA: XXXXXXXX</p>
-        <p>REA: XXXXXXX</p>
-        <p>Capitale sociale: € XXXXX</p>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i><span>info@azienda.com</span>
       </div>
-
-      <!-- Social -->
-      <div class="footer-section">
-        <h3>Seguici</h3>
-        <div class="social-icons">
-          <a href="URL_FACEBOOK" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="URL_INSTAGRAM" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="URL_LINKEDIN" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="URL_TIKTOK" target="_blank"><i class="fab fa-tiktok"></i></a>
-        </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i><span>Via Indirizzo, Città</span>
       </div>
-
     </div>
 
+    <!-- Social -->
+    <div class="footer-section">
+      <h3>Seguici</h3>
+      <div class="social-icons">
+        <a href="URL_FACEBOOK" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="URL_INSTAGRAM" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="URL_LINKEDIN" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="URL_TIKTOK" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+
+    <!-- Bottom -->
     <div class="footer-bottom">
       <span>© 2026 Nome Azienda</span>
-      <div>
-        <a href="#">Privacy</a> |
-        <a href="#">Cookie</a> |
-        <a href="#">Termini</a>
-      </div>
+      <a href="#">Privacy</a>|
+      <a href="#">Cookie</a>|
+      <a href="#">Termini</a>
     </div>
   </footer>
 
 </body>
+
 </html>
