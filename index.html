@@ -38,11 +38,6 @@
       color: var(--text-color);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: 50px;
-      position: relative;
-      margin: 0;
     }
 
     main {
@@ -52,6 +47,8 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
     }
 
     h1 {
@@ -76,12 +73,17 @@
       gap: 50px;
     }
 
+    /* Logo principale */
     .pyramid-top img {
       width: 260px;
       max-width: 80%;
-      transition: transform 0.3s ease;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: wowFade 0.8s ease forwards;
+      animation-delay: 0.2s;
     }
 
+    /* Loghi cliccabili */
     .pyramid-bottom {
       display: flex;
       gap: 80px;
@@ -91,7 +93,18 @@
 
     .logo img {
       width: 160px;
+      transform: translateY(50px);
+      opacity: 0;
       transition: all 0.3s ease;
+      animation: wowFade 0.8s ease forwards;
+    }
+
+    .logo:nth-child(1) img {
+      animation-delay: 0.4s;
+    }
+
+    .logo:nth-child(2) img {
+      animation-delay: 0.6s;
     }
 
     .logo:hover img {
@@ -106,6 +119,20 @@
     a {
       text-decoration: none;
       color: inherit;
+    }
+
+    /* =====================
+       ANIMAZIONI WOW
+    ===================== */
+    @keyframes wowFade {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* =====================
