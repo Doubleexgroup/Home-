@@ -25,22 +25,29 @@
     flex-direction: column;
     background: var(--background-color);
     color: var(--text-color);
+    justify-content: space-between; /* Spazio tra header e footer */
   }
 
   main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra verticalmente i contenuti */
+    align-items: center;     /* Centra orizzontalmente i contenuti */
     padding: 50px 20px;
+    text-align: center;
   }
 
-  h1 { font-size: 2.8rem; text-align: center; margin-bottom: 10px; }
-  p.subtitle { text-align: center; opacity: 0.8; margin-bottom: 50px; }
+  h1 { font-size: 2.8rem; margin-bottom: 10px; }
+  p.subtitle { opacity: 0.8; margin-bottom: 50px; }
 
   /* Piramide loghi */
-  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 50px; }
+  .pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra i loghi tra loro */
+    gap: 50px;
+  }
 
   .pyramid-top img {
     width: 260px; max-width: 80%;
@@ -50,16 +57,18 @@
   }
 
   .pyramid-bottom {
-    display: flex; gap: 80px; flex-wrap: wrap; justify-content: center;
+    display: flex;
+    justify-content: center; /* Centra i loghi inferiori */
+    gap: 80px;
+    flex-wrap: wrap;
   }
 
   .pyramid-bottom .logo img {
-    width: 160px; 
+    width: 160px;
     opacity: 0; transform: translateY(50px) scale(0.8);
     animation: wow 0.8s forwards ease;
   }
 
-  /* Delay a cascata */
   .pyramid-bottom .logo:nth-child(1) img { animation-delay: 0.5s; }
   .pyramid-bottom .logo:nth-child(2) img { animation-delay: 0.8s; }
 
@@ -67,7 +76,6 @@
 
   a { text-decoration: none; color: inherit; }
 
-  /* Animazione WOW */
   @keyframes wow {
     from { opacity: 0; transform: translateY(50px) scale(0.8); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -85,6 +93,7 @@
     text-align: center;
   }
 
+  .footer-section { margin-bottom: 20px; }
   .footer-section h3 { color: var(--accent-color); margin-bottom: 15px; text-transform: uppercase; }
   .footer-section p, .footer-section a, .contact-item span { color: var(--text-color); opacity: 0.9; font-size: 0.95rem; }
   .contact-item { display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 10px; }
@@ -99,8 +108,9 @@
   .social-icons a:hover { background: #fff; color: #000; transform: scale(1.1); }
 
   .footer-bottom {
-    margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);
-    padding-top: 10px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 10px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
     font-size: 0.85rem;
   }
   .footer-bottom a { color: var(--text-color); text-decoration: none; }
@@ -121,11 +131,11 @@
 
   <div class="pyramid">
     <div class="pyramid-top">
-      <img src="doubleexgroup.png" alt="Logo principale">
+      <img src="logo-vertice.png" alt="Logo principale">
     </div>
     <div class="pyramid-bottom">
-      <a href="https://doubleexhome.com/" target="_blank" class="logo"><img src="doubleexhome 3.png" alt="Sito 1"></a>
-      <a href="https://dinnerinthesky.it/" target="_blank" class="logo"><img src="dinner 2.png" alt="Sito 2"></a>
+      <a href="URL_SITO_1" target="_blank" class="logo"><img src="logo1.png" alt="Sito 1"></a>
+      <a href="URL_SITO_2" target="_blank" class="logo"><img src="logo2.png" alt="Sito 2"></a>
     </div>
   </div>
 </main>
@@ -133,9 +143,9 @@
 <footer>
   <div class="footer-section">
     <h3>Contatti</h3>
-    <div class="contact-item"><i class="fas fa-phone"></i><span>+39 3755248477</span></div>
-    <div class="contact-item"><i class="fas fa-envelope"></i><span>doubleexgroup@gmail.com</span></div>
-    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Via Pomarico 58, 00178 Roma</span></div>
+    <div class="contact-item"><i class="fas fa-phone"></i><span>+39 000 000 0000</span></div>
+    <div class="contact-item"><i class="fas fa-envelope"></i><span>info@azienda.com</span></div>
+    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Via Indirizzo, Città</span></div>
   </div>
 
   <div class="footer-section">
@@ -149,7 +159,7 @@
   </div>
 
   <div class="footer-bottom">
-    <span>© 2026 Doubleexgroup</span>
+    <span>© 2026 Nome Azienda</span>
     <a href="#">Privacy</a>|<a href="#">Cookie</a>|<a href="#">Termini</a>
   </div>
 </footer>
