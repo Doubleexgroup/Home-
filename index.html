@@ -17,18 +17,18 @@
 --text:#ffffff;
 }
 
-html{
-height:100%;
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-}
-
-body{
+html,body{
 margin:0;
+padding:0;
+min-height:100vh;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 color:var(--text);
-min-height:100%;
+}
+
+/* SFONDO */
+
+body{
+background:url("sfondo2.jpg") center/cover no-repeat fixed;
 display:flex;
 flex-direction:column;
 }
@@ -42,61 +42,67 @@ flex-direction:column;
 align-items:center;
 justify-content:flex-start;
 text-align:center;
-padding:70px 20px 40px;
+padding:80px 20px 40px;
 }
 
-/* LOGO TOP */
+/* LOGO PRINCIPALE */
 
 .main-logo{
-width:360px;
+width:380px;
 max-width:85vw;
-margin-bottom:60px;
+margin-bottom:70px;
 }
 
 /* SEZIONE CENTRALE */
 
 .middle-section{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:60px;
+display:flex;
+gap:80px;
 align-items:center;
-justify-items:center;
-margin-bottom:60px;
+justify-content:center;
+margin-bottom:70px;
+flex-wrap:wrap;
 }
 
 .logo img{
-width:190px;
-max-width:80vw;
-transition:0.3s ease;
+width:200px;
+transition:0.35s;
 }
 
 .logo img:hover{
-transform:scale(1.12);
+transform:scale(1.15);
 }
 
-/* SPAZIO FUTURO LOGO */
-
-.placeholder{
-width:190px;
-height:120px;
-opacity:0.25;
-border:2px dashed rgba(255,255,255,0.4);
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
-}
-
-/* LOGO BASSO */
+/* LOGO BASSO AVVIVATO */
 
 .bottom-logo img{
-width:200px;
-transition:0.3s;
+
+width:230px;
+
+filter:drop-shadow(0 0 10px rgba(255,255,255,0.6));
+
+transition:all .4s;
+
+animation:float 4s ease-in-out infinite;
+
 }
 
 .bottom-logo img:hover{
-transform:scale(1.12);
+
+transform:scale(1.18);
+
+filter:drop-shadow(0 0 20px rgba(255,255,255,0.9));
+
+}
+
+/* animazione leggera */
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+
 }
 
 /* FOOTER */
@@ -190,26 +196,38 @@ color:#fff;
 
 @media (max-width:900px){
 
+.main-logo{
+width:300px;
+}
+
 .middle-section{
-grid-template-columns:1fr 1fr;
 gap:40px;
 }
 
-.placeholder{
-display:none;
+.logo img{
+width:170px;
+}
+
+.bottom-logo img{
+width:200px;
 }
 
 }
 
 @media (max-width:600px){
 
+main{
+padding-top:60px;
+}
+
 .main-logo{
-width:260px;
+width:230px;
+margin-bottom:50px;
 }
 
 .middle-section{
-grid-template-columns:1fr;
-gap:30px;
+flex-direction:column;
+gap:35px;
 }
 
 .logo img{
@@ -217,7 +235,7 @@ width:160px;
 }
 
 .bottom-logo img{
-width:170px;
+width:190px;
 }
 
 }
@@ -230,11 +248,7 @@ width:170px;
 
 <main>
 
-<!-- LOGO PRINCIPALE -->
-
 <img src="Group2 no sfondo.png" class="main-logo">
-
-<!-- SEZIONE CENTRALE -->
 
 <div class="middle-section">
 
@@ -246,13 +260,7 @@ width:170px;
 <img src="Living2 no sfondo.png">
 </a>
 
-<div class="placeholder">
-Future Brand
 </div>
-
-</div>
-
-<!-- LOGO BASSO -->
 
 <a href="https://dinnerinthesky.it/" target="_blank" class="bottom-logo">
 <img src="dinner2 no sfondo.png">
@@ -275,7 +283,7 @@ Future Brand
 </div>
 
 <div class="contact-item">
-<i class="fas fa-map-marker-alt"></i> Via Pomarico 58, 00178 Roma
+<i class="fas fa-map-marker-alt"></i> Via Pomarico 58, Roma
 </div>
 
 </div>
@@ -312,7 +320,7 @@ Future Brand
 
 </div>
 
-<!-- COOKIE BANNER -->
+<!-- COOKIE -->
 
 <div id="cookieBanner">
 
@@ -330,16 +338,6 @@ Future Brand
 
 <script>
 
-/* SFONDO */
-
-const backgroundImage="sfondo2.jpg";
-
-if(backgroundImage){
-document.documentElement.style.background=`url(${backgroundImage}) center/cover no-repeat`;
-}
-
-/* MODAL */
-
 function openModal(type){
 
 let t=document.getElementById("title");
@@ -347,17 +345,17 @@ let c=document.getElementById("text");
 
 if(type==="privacy"){
 t.innerText="Privacy Policy";
-c.innerHTML="Questo sito non raccoglie direttamente dati personali ma può utilizzare cookie tecnici necessari al funzionamento.";
+c.innerHTML="Questo sito non raccoglie direttamente dati personali.";
 }
 
 if(type==="cookie"){
 t.innerText="Cookie Policy";
-c.innerHTML="Il sito utilizza cookie tecnici e, previo consenso, cookie di analisi.";
+c.innerHTML="Il sito utilizza cookie tecnici necessari al funzionamento.";
 }
 
 if(type==="termini"){
-t.innerText="Termini e Condizioni";
-c.innerHTML="Questo sito ha finalità informativa e reindirizza a siti esterni.";
+t.innerText="Termini";
+c.innerHTML="Questo sito ha finalità informativa.";
 }
 
 document.getElementById("modal").style.display="flex";
@@ -367,8 +365,6 @@ document.getElementById("modal").style.display="flex";
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
-
-/* COOKIE */
 
 function acceptCookies(){
 localStorage.setItem("cookies","accepted");
@@ -394,4 +390,3 @@ document.getElementById("cookieBanner").style.display="flex";
 
 </body>
 </html>
-
