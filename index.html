@@ -14,19 +14,25 @@
   --text-color: #ffffff;
 }
 
-/* Sfondo pieno su tutta la pagina */
-html, body {
-  margin:0;
-  padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-  color:var(--text-color);
+/* Sfondo su html */
+html {
+  height:100%;
   background:none;
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
+}
+
+/* Corpo trasparente */
+body {
+  margin:0;
+  padding:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--text-color);
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  background:transparent;
 }
 
 /* Main */
@@ -38,7 +44,7 @@ main {
   align-items:center;
   text-align:center;
   padding:50px 20px;
-  backdrop-filter: brightness(0.6); /* testo leggibile */
+  background:transparent; /* trasparente */
 }
 
 h1 { font-size:2.6rem; margin-bottom:10px; }
@@ -50,7 +56,7 @@ h1 { font-size:2.6rem; margin-bottom:10px; }
 .logo img { width:150px; transition:0.3s; }
 .logo:hover img { transform:scale(1.1); }
 
-/* Footer trasparente su sfondo */
+/* Footer trasparente */
 footer {
   padding:40px 20px;
   text-align:center;
@@ -110,7 +116,6 @@ footer {
 }
 .accept { background:#2ecc71; }
 .reject { background:#e74c3c; }
-
 </style>
 </head>
 
@@ -167,11 +172,11 @@ footer {
 
 <script>
 // ==========================
-// CONFIGURAZIONE SFONDO
+// SFONDO SU HTML
 // ==========================
 const backgroundImage = 'sonfdo1.jpg'; // <-- sostituisci qui l'immagine
 if(backgroundImage && backgroundImage.trim() !== ''){
-    document.body.style.background = `url(${backgroundImage}) center/cover no-repeat`;
+    document.documentElement.style.background = `url(${backgroundImage}) center/cover no-repeat`;
 }
 
 // ==========================
