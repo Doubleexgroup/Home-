@@ -14,7 +14,7 @@
   --text-color: #ffffff;
 }
 
-/* Sfondo: gradiente di default */
+/* Sfondo: di default trasparente, sarà impostato tramite JS */
 body {
   margin:0;
   padding:0;
@@ -23,14 +23,9 @@ body {
   flex-direction:column;
   min-height:100vh;
   color:var(--text-color);
-  background: linear-gradient(135deg, #1e3a8a, #457b9d);
-  background-size: cover;
-  background-position: center;
-}
-
-/* Sovrascrivi con immagine se presente */
-body[data-bg-image] {
-  background: url(var(--bg-image)) center/cover no-repeat;
+  background:none;
+  background-size:cover;
+  background-position:center;
 }
 
 /* Main */
@@ -58,7 +53,7 @@ h1 { font-size:2.6rem; margin-bottom:10px; }
 footer {
   padding:40px 20px;
   text-align:center;
-  background:transparent; /* niente banda blu */
+  background:transparent;
 }
 
 .footer-section { margin-bottom:20px; }
@@ -114,6 +109,7 @@ footer {
 }
 .accept { background:#2ecc71; }
 .reject { background:#e74c3c; }
+
 </style>
 </head>
 
@@ -139,11 +135,11 @@ footer {
 <h3>Contatti</h3>
 <div class="contact-item"><i class="fas fa-phone"></i> +39 3755248477</div>
 <div class="contact-item"><i class="fas fa-envelope"></i> doubleexgroup@gmail.com</div>
-<div class="contact-item"><i class="fas fa-map-marker-alt"></i> Via Pomarico 58, 00178 Roma</div>
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i> Via Pomarico 58, Roma</div>
 </div>
 
 <div class="footer-bottom">
-© 2026 Doubleexgroup LTD |
+© 2026 Doubleexgroup |
 <a onclick="openModal('privacy')">Privacy</a> |
 <a onclick="openModal('cookie')">Cookie</a> |
 <a onclick="openModal('termini')">Termini</a>
@@ -169,7 +165,17 @@ footer {
 </div>
 
 <script>
+// ==========================
+// CONFIGURAZIONE SFONDO
+// ==========================
+const backgroundImage = 'sfondo-landing.jpg'; // <-- Sostituisci qui il percorso dell'immagine
+if(backgroundImage && backgroundImage.trim() !== ''){
+    document.body.style.background = `url(${backgroundImage}) center/cover no-repeat`;
+}
+
+// ==========================
 // MODAL
+// ==========================
 function openModal(type){
   let t=document.getElementById("title");
   let c=document.getElementById("text");
@@ -196,7 +202,9 @@ function closeModal(){
   document.getElementById("modal").style.display="none";
 }
 
+// ==========================
 // COOKIE
+// ==========================
 function acceptCookies(){
   localStorage.setItem("cookies","accepted");
   document.getElementById("cookieBanner").style.display="none";
@@ -207,26 +215,12 @@ function rejectCookies(){
   document.getElementById("cookieBanner").style.display="none";
 }
 
-// Mostra il banner finché l'utente non clicca
 window.onload = function(){
   const status = localStorage.getItem("cookies");
   if(status !== "accepted" && status !== "rejected"){
     document.getElementById("cookieBanner").style.display = "flex";
   }
 }
-
-// Funzione per aggiungere immagine di sfondo dinamicamente
-function setBackgroundImage(url){
-  if(url && url.trim() !== ""){
-    document.body.style.setProperty('--bg-image', `url(${url})`);
-    document.body.setAttribute('data-bg-image','true');
-  } else {
-    document.body.removeAttribute('data-bg-image');
-  }
-}
-
-// Esempio: se vuoi impostare immagine, basta chiamare qui
-// setBackgroundImage('sfondo-landing.jpg');
 </script>
 
 </body>
