@@ -14,7 +14,7 @@
   --text-color: #ffffff;
 }
 
-/* Sfondo: se vuoi un'immagine, sostituisci 'sfondo-landing.jpg' con il percorso; se lasci vuoto, appare solo il gradiente */
+/* Sfondo: gradiente di default */
 body {
   margin:0;
   padding:0;
@@ -23,7 +23,7 @@ body {
   flex-direction:column;
   min-height:100vh;
   color:var(--text-color);
-  background: linear-gradient(135deg, #1e3a8a, #457b9d); /* Gradiente di base */
+  background: linear-gradient(135deg, #1e3a8a, #457b9d);
   background-size: cover;
   background-position: center;
 }
@@ -42,7 +42,7 @@ main {
   align-items:center;
   text-align:center;
   padding:50px 20px;
-  backdrop-filter: brightness(0.6); /* rende leggibile il testo sull'immagine */
+  backdrop-filter: brightness(0.6);
 }
 
 h1 { font-size:2.6rem; margin-bottom:10px; }
@@ -54,11 +54,11 @@ h1 { font-size:2.6rem; margin-bottom:10px; }
 .logo img { width:150px; transition:0.3s; }
 .logo:hover img { transform:scale(1.1); }
 
-/* Footer */
+/* Footer trasparente */
 footer {
   padding:40px 20px;
   text-align:center;
-  background:rgba(30,58,138,0.8);
+  background:transparent; /* niente banda blu */
 }
 
 .footer-section { margin-bottom:20px; }
@@ -114,7 +114,6 @@ footer {
 }
 .accept { background:#2ecc71; }
 .reject { background:#e74c3c; }
-
 </style>
 </head>
 
@@ -140,7 +139,7 @@ footer {
 <h3>Contatti</h3>
 <div class="contact-item"><i class="fas fa-phone"></i> +39 3755248477</div>
 <div class="contact-item"><i class="fas fa-envelope"></i> doubleexgroup@gmail.com</div>
-<div class="contact-item"><i class="fas fa-map-marker-alt"></i> Via Pomarico 58, Roma</div>
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i> Via Pomarico 58, 00178 Roma</div>
 </div>
 
 <div class="footer-bottom">
@@ -226,10 +225,10 @@ function setBackgroundImage(url){
   }
 }
 
+// Esempio: se vuoi impostare immagine, basta chiamare qui
 // setBackgroundImage('sfondo-landing.jpg');
 </script>
 
 </body>
 </html>
-
 
