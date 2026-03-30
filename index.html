@@ -2,231 +2,394 @@
 <html lang="it">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landing | Azienda</title>
+
+<title>Doubleex Group</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-:root {
-  --accent-color: #e63946;
-  --text-color: #ffffff;
+
+:root{
+--accent:#e63946;
+--text:#ffffff;
 }
 
-/* Sfondo su html */
-html {
-  height:100%;
-  background:none;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+html{
+height:100%;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 }
 
-/* Corpo trasparente */
-body {
-  margin:0;
-  padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  color:var(--text-color);
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-  background:transparent;
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+color:var(--text);
+min-height:100%;
+display:flex;
+flex-direction:column;
 }
 
-/* Main */
-main {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:50px 20px;
-  background:transparent; /* trasparente */
+/* MAIN */
+
+main{
+flex:1;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+text-align:center;
+padding:70px 20px 40px;
 }
 
-h1 { font-size:2.6rem; margin-bottom:10px; }
-.subtitle { opacity:0.8; margin-bottom:50px; }
+/* LOGO TOP */
 
-/* Piramide loghi */
-.pyramid { display:flex; flex-direction:column; align-items:center; gap:50px; }
-.pyramid-bottom { display:flex; gap:70px; flex-wrap:wrap; justify-content:center; }
-.logo img { width:150px; transition:0.3s; }
-.logo:hover img { transform:scale(1.1); }
-
-/* Footer trasparente */
-footer {
-  padding:40px 20px;
-  text-align:center;
-  background:transparent;
+.main-logo{
+width:360px;
+max-width:85vw;
+margin-bottom:60px;
 }
 
-.footer-section { margin-bottom:20px; }
-.footer-section h3 { color:var(--accent-color); margin-bottom:10px; }
-.contact-item { margin-bottom:8px; }
+/* SEZIONE CENTRALE */
 
-.footer-bottom {
-  border-top:1px solid rgba(255,255,255,0.2);
-  padding-top:10px;
-  font-size:0.85rem;
+.middle-section{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:60px;
+align-items:center;
+justify-items:center;
+margin-bottom:60px;
+}
+
+.logo img{
+width:190px;
+max-width:80vw;
+transition:0.3s ease;
+}
+
+.logo img:hover{
+transform:scale(1.12);
+}
+
+/* SPAZIO FUTURO LOGO */
+
+.placeholder{
+width:190px;
+height:120px;
+opacity:0.25;
+border:2px dashed rgba(255,255,255,0.4);
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+}
+
+/* LOGO BASSO */
+
+.bottom-logo img{
+width:200px;
+transition:0.3s;
+}
+
+.bottom-logo img:hover{
+transform:scale(1.12);
+}
+
+/* FOOTER */
+
+footer{
+padding:40px 20px;
+text-align:center;
+}
+
+.footer-section{
+margin-bottom:20px;
+}
+
+.footer-section h3{
+color:var(--accent);
+}
+
+.contact-item{
+margin-bottom:8px;
+}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,0.2);
+padding-top:10px;
+font-size:0.85rem;
+}
+
+.footer-bottom a{
+cursor:pointer;
 }
 
 /* MODAL */
-#modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.8);
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-.modal-box {
-  background:#fff;
-  color:#000;
-  padding:20px;
-  max-width:600px;
-  border-radius:8px;
-  max-height:80%;
-  overflow:auto;
+
+#modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
-/* COOKIE BANNER */
-#cookieBanner {
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#111;
-  color:#fff;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  z-index:9999;
+.modal-box{
+background:#fff;
+color:#000;
+padding:20px;
+max-width:600px;
+border-radius:8px;
+max-height:80%;
+overflow:auto;
 }
-.cookie-buttons button {
-  margin-left:10px;
-  padding:8px 12px;
-  border:none;
-  cursor:pointer;
+
+/* COOKIE */
+
+#cookieBanner{
+position:fixed;
+bottom:0;
+width:100%;
+background:#111;
+color:#fff;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+z-index:9999;
 }
-.accept { background:#2ecc71; }
-.reject { background:#e74c3c; }
+
+.cookie-buttons button{
+margin-left:10px;
+padding:8px 12px;
+border:none;
+cursor:pointer;
+}
+
+.accept{
+background:#2ecc71;
+color:#fff;
+}
+
+.reject{
+background:#e74c3c;
+color:#fff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+.middle-section{
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.placeholder{
+display:none;
+}
+
+}
+
+@media (max-width:600px){
+
+.main-logo{
+width:260px;
+}
+
+.middle-section{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.logo img{
+width:160px;
+}
+
+.bottom-logo img{
+width:170px;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <main>
-<h1></h1> 
-<p class="subtitle"></p> 
 
-<div class="pyramid">
-  <img src="Group2 no sfondo.png" width="260">
+<!-- LOGO PRINCIPALE -->
 
-  <div class="pyramid-bottom">
-    <a href="https://doubleexhome.com/" target="_blank" class="logo"><img src="Home2 no sfondo.png"></a>
-    <a href="https://dinnerinthesky.it/" target="_blank" class="logo"><img src="dinner2 no sfondo.png"></a>
-    <a href="https://www.romaprimeliving.it/" target="_blank" class="logo"><img src="Living2 no sfondo.png"></a>
-  </div>
+<img src="Group2 no sfondo.png" class="main-logo">
+
+<!-- SEZIONE CENTRALE -->
+
+<div class="middle-section">
+
+<a href="https://doubleexhome.com/" target="_blank" class="logo">
+<img src="Home2 no sfondo.png">
+</a>
+
+<a href="https://www.romaprimeliving.it/" target="_blank" class="logo">
+<img src="Living2 no sfondo.png">
+</a>
+
+<div class="placeholder">
+Future Brand
 </div>
+
+</div>
+
+<!-- LOGO BASSO -->
+
+<a href="https://dinnerinthesky.it/" target="_blank" class="bottom-logo">
+<img src="dinner2 no sfondo.png">
+</a>
+
 </main>
 
 <footer>
+
 <div class="footer-section">
+
 <h3>Contatti</h3>
-<div class="contact-item"><i class="fas fa-phone"></i> +39 3755248477</div>
-<div class="contact-item"><i class="fas fa-envelope"></i> doubleexgroup@gmail.com</div>
-<div class="contact-item"><i class="fas fa-map-marker-alt"></i> Via Pomarico 58, 00178 Roma</div>
+
+<div class="contact-item">
+<i class="fas fa-phone"></i> +39 3755248477
+</div>
+
+<div class="contact-item">
+<i class="fas fa-envelope"></i> doubleexgroup@gmail.com
+</div>
+
+<div class="contact-item">
+<i class="fas fa-map-marker-alt"></i> Via Pomarico 58, 00178 Roma
+</div>
+
 </div>
 
 <div class="footer-bottom">
+
 © 2026 Doubleexgroup LTD |
+
 <a onclick="openModal('privacy')">Privacy</a> |
+
 <a onclick="openModal('cookie')">Cookie</a> |
+
 <a onclick="openModal('termini')">Termini</a>
+
 </div>
+
 </footer>
 
 <!-- MODAL -->
+
 <div id="modal">
-  <div class="modal-box">
-    <h2 id="title"></h2>
-    <div id="text"></div>
-    <button onclick="closeModal()">Chiudi</button>
-  </div>
+
+<div class="modal-box">
+
+<h2 id="title"></h2>
+
+<div id="text"></div>
+
+<br>
+
+<button onclick="closeModal()">Chiudi</button>
+
+</div>
+
 </div>
 
 <!-- COOKIE BANNER -->
+
 <div id="cookieBanner">
-  <span>Utilizziamo cookie tecnici e, previo consenso, cookie di analisi e marketing.</span>
-  <div class="cookie-buttons">
-    <button class="accept" onclick="acceptCookies()">Accetta</button>
-    <button class="reject" onclick="rejectCookies()">Rifiuta</button>
-  </div>
+
+<span>Utilizziamo cookie tecnici e, previo consenso, cookie di analisi e marketing.</span>
+
+<div class="cookie-buttons">
+
+<button class="accept" onclick="acceptCookies()">Accetta</button>
+
+<button class="reject" onclick="rejectCookies()">Rifiuta</button>
+
+</div>
+
 </div>
 
 <script>
-// ==========================
-// SFONDO SU HTML
-// ==========================
-const backgroundImage = 'sonfdo1.jpg'; // <-- sostituisci qui l'immagine
-if(backgroundImage && backgroundImage.trim() !== ''){
-    document.documentElement.style.background = `url(${backgroundImage}) center/cover no-repeat`;
+
+/* SFONDO */
+
+const backgroundImage="sfondo2.jpg";
+
+if(backgroundImage){
+document.documentElement.style.background=`url(${backgroundImage}) center/cover no-repeat`;
 }
 
-// ==========================
-// MODAL
-// ==========================
+/* MODAL */
+
 function openModal(type){
-  let t=document.getElementById("title");
-  let c=document.getElementById("text");
 
-  if(type==="privacy"){
-    t.innerText="Privacy Policy";
-    c.innerHTML="Questo sito non raccoglie direttamente dati personali.<br><br>Durante la navigazione possono essere acquisiti dati tecnici (come indirizzo IP) necessari al funzionamento e alla sicurezza.<br><br>Il sito contiene collegamenti a piattaforme esterne, che operano come titolari autonomi del trattamento dei dati.<br><br>Per informazioni: doubleexgroup@gmail.com.";
-  }
+let t=document.getElementById("title");
+let c=document.getElementById("text");
 
-  if(type==="cookie"){
-    t.innerText="Cookie Policy";
-    c.innerHTML="Questo sito utilizza cookie tecnici necessari al funzionamento.<br><br>Previo consenso, possono essere utilizzati cookie di analisi e marketing.<br><br>L’utente può accettare o rifiutare tali cookie tramite il banner.";
-  }
+if(type==="privacy"){
+t.innerText="Privacy Policy";
+c.innerHTML="Questo sito non raccoglie direttamente dati personali ma può utilizzare cookie tecnici necessari al funzionamento.";
+}
 
-  if(type==="termini"){
-    t.innerText="Termini e Condizioni";
-    c.innerHTML="Questo sito ha finalità esclusivamente informativa e di reindirizzamento verso siti esterni.<br><br>Non siamo responsabili dei contenuti, servizi o trattamenti effettuati da siti terzi.<br><br>L’utilizzo del sito avviene sotto la responsabilità dell’utente.";
-  }
+if(type==="cookie"){
+t.innerText="Cookie Policy";
+c.innerHTML="Il sito utilizza cookie tecnici e, previo consenso, cookie di analisi.";
+}
 
-  document.getElementById("modal").style.display="flex";
+if(type==="termini"){
+t.innerText="Termini e Condizioni";
+c.innerHTML="Questo sito ha finalità informativa e reindirizza a siti esterni.";
+}
+
+document.getElementById("modal").style.display="flex";
+
 }
 
 function closeModal(){
-  document.getElementById("modal").style.display="none";
+document.getElementById("modal").style.display="none";
 }
 
-// ==========================
-// COOKIE
-// ==========================
+/* COOKIE */
+
 function acceptCookies(){
-  localStorage.setItem("cookies","accepted");
-  document.getElementById("cookieBanner").style.display="none";
+localStorage.setItem("cookies","accepted");
+document.getElementById("cookieBanner").style.display="none";
 }
 
 function rejectCookies(){
-  localStorage.setItem("cookies","rejected");
-  document.getElementById("cookieBanner").style.display="none";
+localStorage.setItem("cookies","rejected");
+document.getElementById("cookieBanner").style.display="none";
 }
 
-window.onload = function(){
-  const status = localStorage.getItem("cookies");
-  if(status !== "accepted" && status !== "rejected"){
-    document.getElementById("cookieBanner").style.display = "flex";
-  }
+window.onload=function(){
+
+const status=localStorage.getItem("cookies");
+
+if(status!=="accepted" && status!=="rejected"){
+document.getElementById("cookieBanner").style.display="flex";
 }
+
+}
+
 </script>
 
 </body>
