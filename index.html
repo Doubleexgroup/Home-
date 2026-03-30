@@ -42,7 +42,7 @@ flex-direction:column;
 align-items:center;
 justify-content:flex-start;
 text-align:center;
-padding:80px 20px 40px;
+padding:70px 20px 30px;
 }
 
 /* LOGO PRINCIPALE */
@@ -50,17 +50,17 @@ padding:80px 20px 40px;
 .main-logo{
 width:380px;
 max-width:85vw;
-margin-bottom:70px;
+margin-bottom:45px;
 }
 
 /* SEZIONE CENTRALE */
 
 .middle-section{
 display:flex;
-gap:80px;
+gap:55px;
 align-items:center;
 justify-content:center;
-margin-bottom:70px;
+margin-bottom:45px;
 flex-wrap:wrap;
 }
 
@@ -73,7 +73,7 @@ transition:0.35s;
 transform:scale(1.15);
 }
 
-/* LOGO BASSO AVVIVATO */
+/* LOGO BASSO */
 
 .bottom-logo img{
 
@@ -95,8 +95,6 @@ filter:drop-shadow(0 0 20px rgba(255,255,255,0.9));
 
 }
 
-/* animazione leggera */
-
 @keyframes float{
 
 0%{transform:translateY(0)}
@@ -108,12 +106,12 @@ filter:drop-shadow(0 0 20px rgba(255,255,255,0.9));
 /* FOOTER */
 
 footer{
-padding:40px 20px;
+padding:35px 20px;
 text-align:center;
 }
 
 .footer-section{
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 .footer-section h3{
@@ -121,7 +119,7 @@ color:var(--accent);
 }
 
 .contact-item{
-margin-bottom:8px;
+margin-bottom:6px;
 }
 
 .footer-bottom{
@@ -198,10 +196,12 @@ color:#fff;
 
 .main-logo{
 width:300px;
+margin-bottom:40px;
 }
 
 .middle-section{
-gap:40px;
+gap:35px;
+margin-bottom:40px;
 }
 
 .logo img{
@@ -222,12 +222,13 @@ padding-top:60px;
 
 .main-logo{
 width:230px;
-margin-bottom:50px;
+margin-bottom:35px;
 }
 
 .middle-section{
 flex-direction:column;
-gap:35px;
+gap:28px;
+margin-bottom:35px;
 }
 
 .logo img{
@@ -302,8 +303,6 @@ width:190px;
 
 </footer>
 
-<!-- MODAL -->
-
 <div id="modal">
 
 <div class="modal-box">
@@ -319,8 +318,6 @@ width:190px;
 </div>
 
 </div>
-
-<!-- COOKIE -->
 
 <div id="cookieBanner">
 
@@ -350,7 +347,7 @@ c.innerHTML="Questo sito non raccoglie direttamente dati personali.";
 
 if(type==="cookie"){
 t.innerText="Cookie Policy";
-c.innerHTML="Il sito utilizza cookie tecnici necessari al funzionamento.";
+c.innerHTML="Il sito utilizza cookie tecnici necessari.";
 }
 
 if(type==="termini"){
