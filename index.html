@@ -1,103 +1,154 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Doubleex Group</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
+  :root{
+    --accent:#e63946;
+    --text:#ffffff;
+  }
 
-:root{
---accent:#e63946;
---text:#ffffff;
-}
+  html, body {
+    margin:0; padding:0; min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    color:var(--text);
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-html,body{
-margin:0;
-padding:0;
-min-height:100vh;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-color:var(--text);
-}
+  body{
+    background:url("sfondogrigio.jpg") center/cover no-repeat fixed;
+    display:flex; flex-direction:column;
+  }
 
-body{
-background:url("sfondogrigio.jpg") center/cover no-repeat fixed;
-display:flex;
-flex-direction:column;
-}
+  main{
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-start;
+    text-align:center; padding:30px 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-/* MAIN */
+  /* ══ SCENA MOLECOLA ══ */
+  .molecule-scene {
+    position: relative;
+    width: min(1100px, 96vw);
+    height: min(1100px, 96vw);
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
 
-main{
-flex:1;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start;
-text-align:center;
-padding:70px 20px 20px;
-}
+  .orbit-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-/* LOGO PRINCIPALE */
+  .orbit-path {
+    display: none;
+  }
 
-.main-logo{
-width:480px;
-max-width:95vw;
-margin-bottom:-35px;
-}
+  .connect-line, .particle {
+    display: none;
+  }
 
-/* LOGHI CENTRALI */
+  /* ── NODO CENTRALE ── */
+  .node-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(600px, 52.3vw); height: min(600px, 52.3vw);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 80%);
+    border: 3px solid rgba(86,27,109,0.75);
+    box-shadow:
+      0 0 0 1px rgba(138,45,181,0.25),
+      inset 0 0 18px rgba(86,27,109,0.18),
+      0 0 18px rgba(86,27,109,0.30);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+    animation: breathe 5s ease-in-out infinite alternate;
+  }
 
-.middle-section{
-display:flex;
-gap:200px;
-align-items:center;
-justify-content:center;
-margin-bottom:-10px;
-flex-wrap:wrap;
-}
+  .node-center img {
+    width: 80%;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+  }
 
-.logo img{
-width:220px;
-transition:all .35s ease;
-}
+  @keyframes breathe {
+    from { box-shadow: 0 0 0 1px rgba(138,45,181,0.25), inset 0 0 18px rgba(86,27,109,0.18), 0 0 20px rgba(86,27,109,0.25); }
+    to   { box-shadow: 0 0 0 2px rgba(138,45,181,0.45), inset 0 0 22px rgba(86,27,109,0.22), 0 0 55px rgba(86,27,109,0.50); }
+  }
 
-.logo img:hover,
-.bottom-logo img:hover{
+  /* ── NODO SATELLITE ── */
+  .sat-node {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 80%);
+    border: 3px solid rgba(86,27,109,0.75);
+    box-shadow:
+      0 0 0 1px rgba(138,45,181,0.25),
+      inset 0 0 18px rgba(86,27,109,0.18),
+      0 0 18px rgba(86,27,109,0.30);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    transition: box-shadow .3s, border-color .3s;
+    cursor: pointer;
+    text-decoration: none;
+    pointer-events: all;
+    z-index: 10;
+    width: min(240px, 20.9vw); height: min(240px, 20.9vw);
+    transform: translate(-50%, -50%);
+  }
 
-transform:scale(1.15);
+  .sat-node:hover {
+    border-color: rgba(138,45,181,0.95);
+    box-shadow:
+      0 0 0 2px rgba(138,45,181,0.50),
+      0 0 35px rgba(138,45,181,0.55),
+      0 0 70px rgba(86,27,109,0.25),
+      inset 0 0 22px rgba(86,27,109,0.20);
+  }
 
-filter:
-drop-shadow(0 0 12px rgba(255,255,255,0.7))
-drop-shadow(0 0 25px rgba(255,255,255,0.4));
+  .sat-node img {
+    width: 78%;
+    pointer-events: none;
+    user-select: none;
+    transition: filter .3s;
+  }
 
-}
+  /* Logo Living più grande */
+  #sat2 img {
+    width: 93%;
+  }
 
-/* LOGO BASSO */
+  .sat-node:hover img {
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.7));
+  }
 
-.bottom-logo{
-margin-top:-45px;
-}
+  .particle {
+    fill: #8a2db5;
+    filter: url(#glow);
+  }
 
-.bottom-logo img{
-width:300px;
-transition:all .35s ease;
-}
-
-/* FOOTER */
-
-footer{
+  /* ── FOOTER ── */
+  footer{
     padding:0 20px 50px; text-align:center;
     background:transparent; backdrop-filter:blur(3px);
     color:#561b6d;
   }
   .footer-border{
-    border-top:0.5px solid #561b6d;
+    border-top:1px solid #561b6d;
     padding-top:12px; margin-bottom:10px;
   }
   .footer-section{ margin-bottom:14px; }
@@ -115,151 +166,282 @@ footer{
   .footer-bottom a{ cursor:pointer; color:#561b6d; text-decoration:none; }
   .footer-bottom a:hover{ color:#54196d; }
 
-/* MODAL */
+  /* ══ MODAL ELEGANTE ══ */
+  #modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-#modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
+  #modal.visible {
+    display: flex;
+    animation: modalFadeIn .3s cubic-bezier(.16,1,.3,1) both;
+  }
 
-.modal-box{
-background:#fff;
-color:#000;
-padding:20px;
-max-width:600px;
-border-radius:8px;
-max-height:80%;
-overflow:auto;
-}
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 
-/* COOKIE */
+  .modal-box {
+    background: rgba(12, 5, 20, 0.88);
+    border: 1px solid rgba(138, 45, 181, 0.45);
+    border-radius: 20px;
+    padding: 36px 40px 32px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow:
+      0 0 0 1px rgba(138,45,181,0.15),
+      0 24px 80px rgba(0,0,0,0.6),
+      0 0 60px rgba(86,27,109,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    animation: modalSlideUp .35s cubic-bezier(.16,1,.3,1) both;
+    position: relative;
+  }
 
-#cookieBanner{
+  @keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(24px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+  }
 
-position:fixed;
+  .modal-box::-webkit-scrollbar { width: 4px; }
+  .modal-box::-webkit-scrollbar-track { background: transparent; }
+  .modal-box::-webkit-scrollbar-thumb { background: rgba(138,45,181,0.4); border-radius: 2px; }
 
-bottom:0;
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(138,45,181,0.25);
+  }
 
-width:100%;
+  .modal-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(138,45,181,0.18);
+    border: 1px solid rgba(138,45,181,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
 
-background:#111;
+  #modal-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: rgba(255,255,255,0.95);
+    margin: 0 0 0 12px;
+    flex: 1;
+    text-align: left;
+  }
 
-color:#fff;
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, color .2s, border-color .2s;
+    flex-shrink: 0;
+  }
 
-padding:15px;
+  .modal-close:hover {
+    background: rgba(138,45,181,0.25);
+    border-color: rgba(138,45,181,0.50);
+    color: #fff;
+  }
 
-display:flex;
+  #modal-text {
+    color: rgba(255,255,255,0.72);
+    font-size: .92rem;
+    line-height: 1.75;
+    text-align: left;
+  }
 
-justify-content:space-between;
+  #modal-text h4 {
+    color: rgba(255,255,255,0.90);
+    font-size: .95rem;
+    margin: 20px 0 8px;
+    font-weight: 600;
+  }
 
-align-items:center;
+  #modal-text p { margin: 0 0 12px; }
 
-flex-wrap:wrap;
+  .modal-footer {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(138,45,181,0.20);
+    display: flex;
+    justify-content: flex-end;
+  }
 
-z-index:9999;
+  .modal-btn {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7b2fbe, #561b6d);
+    color: #fff;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(86,27,109,0.45);
+    transition: background .2s, box-shadow .2s, transform .15s;
+    letter-spacing: .02em;
+  }
 
-}
+  .modal-btn:hover {
+    background: linear-gradient(135deg, #9b3fe0, #6e22a0);
+    box-shadow: 0 6px 22px rgba(86,27,109,0.65);
+    transform: translateY(-1px);
+  }
 
-.cookie-buttons button{
-margin-left:10px;
-padding:8px 12px;
-border:none;
-cursor:pointer;
-}
+  .modal-btn:active { transform: scale(.97); }
 
-.accept{
-background:#2ecc71;
-color:#fff;
-}
+  /* ── COOKIE BANNER ── */
+  #cookieBanner {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 320px;
+    background: rgba(12, 5, 20, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(86,27,109,0.55);
+    border-radius: 18px;
+    padding: 22px 22px 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(138,45,181,0.12), 0 0 30px rgba(86,27,109,0.2);
+    z-index: 9998;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    animation: cookieSlide .45s cubic-bezier(.16,1,.3,1) both;
+  }
 
-.reject{
-background:#e74c3c;
-color:#fff;
-}
+  @keyframes cookieSlide {
+    from { opacity:0; transform: translateY(20px) scale(.97); }
+    to   { opacity:1; transform: translateY(0)    scale(1);   }
+  }
 
-/* RESPONSIVE */
+  #cookieBanner .cookie-icon { font-size: 1.5rem; margin-bottom: 2px; }
+  #cookieBanner .cookie-title {
+    font-size: .78rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(138,45,181,0.9); margin-bottom: 4px;
+  }
+  #cookieBanner .cookie-text {
+    font-size: .82rem; line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+  }
+  #cookieBanner .cookie-actions { display: flex; gap: 10px; margin-top: 2px; }
+  #cookieBanner .cookie-actions button {
+    flex: 1; padding: 9px 0; border: none;
+    border-radius: 10px; font-size: .82rem; font-weight: 600;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, background .2s;
+  }
+  #cookieBanner .cookie-actions button:active { transform: scale(.96); }
+  #cookieBanner .btn-accept {
+    background: linear-gradient(135deg, #7b2fbe, #561b6d);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(86,27,109,0.45);
+  }
+  #cookieBanner .btn-accept:hover {
+    background: linear-gradient(135deg, #9b3fe0, #6e22a0);
+    box-shadow: 0 6px 20px rgba(86,27,109,0.65);
+  }
+  #cookieBanner .btn-reject {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.12) !important;
+  }
+  #cookieBanner .btn-reject:hover {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+  }
 
-@media (max-width:900px){
+  @media(max-width:400px){
+    #cookieBanner{ right:12px; bottom:12px; width: calc(100vw - 24px); }
+  }
 
-.main-logo{
-width:300px;
-margin-bottom:40px;
-}
+  /* ══ RESPONSIVE ══ */
+  html, body { overflow-x: hidden; width: 100%; }
 
-.middle-section{
-gap:35px;
-}
-
-.logo img{
-width:170px;
-}
-
-.bottom-logo img{
-width:200px;
-}
-
-}
-
-@media (max-width:600px){
-
-main{
-padding-top:60px;
-}
-
-.main-logo{
-width:230px;
-margin-bottom:35px;
-}
-
-.middle-section{
-flex-direction:column;
-gap:25px;
-}
-
-.logo img{
-width:160px;
-}
-
-.bottom-logo img{
-width:185px;
-}
-
-}
-
+  @media(max-width:1140px){
+    .molecule-scene{ width:96vw; height:96vw; }
+    .node-center{ width:52.3vw; height:52.3vw; }
+    .sat-node{ width:20.9vw; height:20.9vw; }
+  }
+  @media(max-width:600px){
+    main{ padding:12px 0 8px; }
+    footer{ padding:0 12px 36px; font-size:14px; }
+    .contact-item{ font-size:13px; }
+    .modal-box{ padding: 24px 22px 20px; }
+  }
+  @media(max-width:380px){
+    main{ padding:8px 0 6px; }
+  }
 </style>
-
 </head>
-
 <body>
 
 <main>
+  <div class="molecule-scene" id="scene">
 
-<img src="Group2 no sfondo.png" class="main-logo">
+    <svg class="orbit-svg" id="orbitSvg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <circle class="orbit-path" id="orbitCircle1" cx="550" cy="550" r="340"/>
+      <circle class="orbit-path" id="orbitCircle2" cx="550" cy="550" r="430"/>
+      <circle class="orbit-path" id="orbitCircle3" cx="550" cy="550" r="510"/>
+      <line id="line1" class="connect-line"/>
+      <line id="line2" class="connect-line" style="animation-delay:-3.3s"/>
+      <line id="line3" class="connect-line" style="animation-delay:-6.6s"/>
+      <circle class="particle" r="5" id="p1">
+        <animateMotion id="am1" dur="4.5s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;0" keyTimes="0;0.5;1"/>
+      </circle>
+      <circle class="particle" r="5" id="p2">
+        <animateMotion id="am2" dur="5.2s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;0" keyTimes="0;0.5;1"/>
+      </circle>
+      <circle class="particle" r="5" id="p3">
+        <animateMotion id="am3" dur="5.8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;0" keyTimes="0;0.5;1"/>
+      </circle>
+    </svg>
 
-<div class="middle-section">
+    <div class="node-center">
+      <img src="Group2 no sfondo.png" alt="Doubleex Group">
+    </div>
 
-<a href="https://doubleexhome.com/" target="_blank" class="logo">
-<img src="Home2 no sfondo.png">
-</a>
+    <a href="https://doubleexhome.com/" target="_blank" class="sat-node" id="sat1">
+      <img src="Home2 no sfondo.png" alt="Doubleex Home">
+    </a>
+    <a href="https://www.romaprimeliving.it/" target="_blank" class="sat-node" id="sat2">
+      <img src="Living-no-sfondo.png" alt="Roma Prime Living">
+    </a>
+    <a href="https://dinnerinthesky.it/" target="_blank" class="sat-node" id="sat3">
+      <img src="dinner2 no sfondo.png" alt="Dinner in the Sky">
+    </a>
 
-<a href="https://www.romaprimeliving.it/" target="_blank" class="logo">
-<img src="Romaliving2.png">
-</a>
-
-</div>
-
-<a href="https://dinnerinthesky.it/" target="_blank" class="bottom-logo">
-<img src="dinner2 no sfondo.png">
-</a>
-
+  </div>
 </main>
 
 <footer>
@@ -278,79 +460,233 @@ width:185px;
     </div>
   </div>
 </footer>
-    
-<div id="modal">
-<div class="modal-box">
-<h2 id="title"></h2>
-<div id="text"></div>
-<br>
-<button onclick="closeModal()">Chiudi</button>
-</div>
+
+<!-- MODAL ELEGANTE -->
+<div id="modal" onclick="handleModalOutsideClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-icon" id="modal-icon">🔒</div>
+      <h2 id="modal-title"></h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Chiudi">×</button>
+    </div>
+    <div id="modal-text"></div>
+    <div class="modal-footer">
+      <button class="modal-btn" onclick="closeModal()">Chiudi</button>
+    </div>
+  </div>
 </div>
 
+<!-- COOKIE BANNER -->
 <div id="cookieBanner">
-
-<span>Utilizziamo cookie tecnici e, previo consenso, cookie di analisi e marketing.</span>
-
-<div class="cookie-buttons">
-<button class="accept" onclick="acceptCookies()">Accetta</button>
-<button class="reject" onclick="rejectCookies()">Rifiuta</button>
-</div>
-
+  <div>
+    <div class="cookie-icon">🍪</div>
+    <div class="cookie-title">Cookie &amp; Privacy</div>
+    <div class="cookie-text">Utilizziamo cookie tecnici e, previo consenso, cookie di analisi e marketing per migliorare la tua esperienza.</div>
+  </div>
+  <div class="cookie-actions">
+    <button class="btn-accept" onclick="acceptCookies()">Accetta</button>
+    <button class="btn-reject" onclick="rejectCookies()">Rifiuta</button>
+  </div>
 </div>
 
 <script>
+/*
+  Sistema planetario — no sovrapposizione garantita.
 
-function openModal(type){
+  STRATEGIA:
+  - Il pianeta 0 (sat1) ruota liberamente sulla sua orbita con duration 220s.
+  - I pianeti 1 e 2 sono ANCORATI angolarmente a +120° e +240° rispetto al pianeta 0.
+  - Tutti e tre viaggiano sulla stessa orbita circolare (raggio dinamico comune),
+    eliminando alla radice qualsiasi possibilità di accavallamento.
+  - Il raggio dell'orbita "respira" (pulse) come in origine, ma è lo stesso per tutti e tre.
+  - La velocità di rotazione è invariata rispetto alla versione precedente (duration 220s).
+*/
 
-let t=document.getElementById("title");
-let c=document.getElementById("text");
+const ORBIT_BASE  = 0.37;   // frazione di W
+const ORBIT_AMP   = 0.09;   // ampiezza pulsazione
+const PULSE_PERIOD = 18000; // ms
+const DURATION     = 220000; // ms per giro completo (sat1 — gli altri lo seguono)
 
-if(type==="privacy"){
-t.innerText="Privacy Policy";
-c.innerHTML="Questo sito non raccoglie direttamente dati personali.";
+const SCENE_BASE = 1100;
+
+const orbitCircles = [
+  document.getElementById('orbitCircle1'),
+  document.getElementById('orbitCircle2'),
+  document.getElementById('orbitCircle3'),
+];
+
+const scene = document.getElementById('scene');
+let startTime = null;
+
+function tick(ts) {
+  if (!startTime) startTime = ts;
+
+  const W  = scene.offsetWidth;
+  const cx = W / 2;
+  const cy = W / 2;
+  const elapsed = ts - startTime;
+
+  // Raggio orbitale comune — pulsa lentamente nel tempo
+  const pulse  = Math.sin((elapsed / PULSE_PERIOD) * Math.PI * 2);
+  const rCenter = (Math.min(600, W * 0.523) / 2); // raggio nodo centrale
+  const rSat    = document.getElementById('sat1').offsetWidth / 2;
+
+  const R_raw = W * (ORBIT_BASE + ORBIT_AMP * pulse);
+  const R_min = rCenter + rSat + 6;
+  const R_MAX = W * 0.5 - rSat - 6;
+  const R     = Math.min(R_MAX, Math.max(R_min, R_raw));
+
+  // Angolo base: sat1 avanza nel tempo
+  const progress  = (elapsed % DURATION) / DURATION;
+  const baseAngle = progress * Math.PI * 2 - Math.PI / 2;
+
+  // I tre satelliti sono sempre a 120° l'uno dall'altro
+  const angles = [
+    baseAngle,
+    baseAngle + (Math.PI * 2 / 3),
+    baseAngle + (Math.PI * 4 / 3),
+  ];
+
+  const ids    = ['sat1', 'sat2', 'sat3'];
+  const lineIds = ['line1', 'line2', 'line3'];
+  const amIds  = ['am1', 'am2', 'am3'];
+
+  ids.forEach((id, i) => {
+    const satEl  = document.getElementById(id);
+    const lineEl = document.getElementById(lineIds[i]);
+    const amEl   = document.getElementById(amIds[i]);
+
+    // Tutti e tre condividono lo stesso R — nessuna orbita separata
+    orbitCircles[i].setAttribute('cx', cx);
+    orbitCircles[i].setAttribute('cy', cy);
+    orbitCircles[i].setAttribute('r',  R);
+
+    const angle = angles[i];
+    const sx = cx + R * Math.cos(angle);
+    const sy = cy + R * Math.sin(angle);
+
+    satEl.style.left = sx + 'px';
+    satEl.style.top  = sy + 'px';
+
+    // Linea dal bordo del centro al bordo del satellite
+    const dx   = sx - cx, dy = sy - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const ux   = dx / dist, uy = dy / dist;
+
+    const x1 = cx + ux * rCenter;
+    const y1 = cy + uy * rCenter;
+    const x2 = sx - ux * rSat;
+    const y2 = sy - uy * rSat;
+
+    lineEl.setAttribute('x1', x1); lineEl.setAttribute('y1', y1);
+    lineEl.setAttribute('x2', x2); lineEl.setAttribute('y2', y2);
+    amEl.setAttribute('path', `M ${x1},${y1} L ${x2},${y2}`);
+  });
+
+  requestAnimationFrame(tick);
 }
 
-if(type==="cookie"){
-t.innerText="Cookie Policy";
-c.innerHTML="Il sito utilizza cookie tecnici necessari.";
+requestAnimationFrame(tick);
+
+/* ── Modal ── */
+const MODAL_CONTENT = {
+  privacy: {
+    icon: '🔒',
+    title: 'Privacy Policy',
+    html: `
+      <p>Doubleex Group LTD rispetta la tua privacy e si impegna a proteggere i dati personali degli utenti in conformità al <strong>Regolamento UE 2016/679 (GDPR)</strong>.</p>
+      <h4>Dati raccolti</h4>
+      <p>Questo sito non raccoglie direttamente dati personali degli utenti. Eventuali dati forniti volontariamente tramite i moduli di contatto (nome, email, telefono) sono trattati esclusivamente per rispondere alle richieste ricevute.</p>
+      <h4>Finalità del trattamento</h4>
+      <p>I dati raccolti sono utilizzati unicamente per finalità informative e di risposta alle comunicazioni. Non vengono ceduti a terzi né utilizzati per finalità di marketing senza previo consenso.</p>
+      <h4>Diritti dell'utente</h4>
+      <p>L'utente ha il diritto di accedere, rettificare, cancellare i propri dati e di revocare il consenso in qualsiasi momento, scrivendo a <a href="mailto:info@doubleexgroup.com" style="color:rgba(138,45,181,0.9)">info@doubleexgroup.com</a>.</p>
+    `
+  },
+  cookie: {
+    icon: '🍪',
+    title: 'Cookie Policy',
+    html: `
+      <p>Questo sito utilizza cookie per garantire il corretto funzionamento della navigazione e, previo consenso, cookie analitici e di marketing.</p>
+      <h4>Cookie tecnici (sempre attivi)</h4>
+      <p>Sono necessari per il funzionamento del sito e non richiedono il tuo consenso. Tra questi rientrano i cookie di sessione e le preferenze di navigazione.</p>
+      <h4>Cookie analitici e di profilazione</h4>
+      <p>Utilizzati per comprendere come gli utenti interagiscono con il sito e per personalizzare i contenuti. Vengono attivati solo previo tuo consenso esplicito.</p>
+      <h4>Gestione dei cookie</h4>
+      <p>Puoi modificare le tue preferenze in qualsiasi momento tramite le impostazioni del browser oppure contattandoci a <a href="mailto:info@doubleexgroup.com" style="color:rgba(138,45,181,0.9)">info@doubleexgroup.com</a>.</p>
+    `
+  },
+  termini: {
+    icon: '📄',
+    title: 'Termini di Utilizzo',
+    html: `
+      <p>Questo sito ha finalità esclusivamente informativa e presentativa delle attività di Doubleex Group LTD.</p>
+      <h4>Proprietà intellettuale</h4>
+      <p>Tutti i contenuti presenti su questo sito — testi, immagini, loghi e grafica — sono di proprietà esclusiva di Doubleex Group LTD e sono protetti dalla normativa sul diritto d'autore.</p>
+      <h4>Limitazione di responsabilità</h4>
+      <p>Doubleex Group LTD non si assume alcuna responsabilità per eventuali errori od omissioni nei contenuti del sito, né per i danni derivanti dall'uso delle informazioni ivi contenute.</p>
+      <h4>Legge applicabile</h4>
+      <p>Il presente sito è soggetto alla legge italiana. Per qualsiasi controversia è competente il foro di Roma.</p>
+    `
+  }
+};
+
+function openModal(type) {
+  const content = MODAL_CONTENT[type];
+  if (!content) return;
+  document.getElementById('modal-icon').textContent = content.icon;
+  document.getElementById('modal-title').textContent = content.title;
+  document.getElementById('modal-text').innerHTML = content.html;
+  const modal = document.getElementById('modal');
+  modal.classList.add('visible');
+  document.body.style.overflow = 'hidden';
 }
 
-if(type==="termini"){
-t.innerText="Termini";
-c.innerHTML="Questo sito ha finalità informativa.";
+function closeModal() {
+  const modal = document.getElementById('modal');
+  modal.classList.remove('visible');
+  document.body.style.overflow = '';
 }
 
-document.getElementById("modal").style.display="flex";
-
+function handleModalOutsideClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
 }
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ── Cookie banner ── */
+function acceptCookies() {
+  localStorage.setItem('doubleex_cookies', 'accepted');
+  hideCookieBanner();
 }
 
-function acceptCookies(){
-localStorage.setItem("cookies","accepted");
-document.getElementById("cookieBanner").style.display="none";
+function rejectCookies() {
+  localStorage.setItem('doubleex_cookies', 'rejected');
+  hideCookieBanner();
 }
 
-function rejectCookies(){
-localStorage.setItem("cookies","rejected");
-document.getElementById("cookieBanner").style.display="none";
+function hideCookieBanner() {
+  const b = document.getElementById('cookieBanner');
+  b.style.transition = 'opacity .35s, transform .35s';
+  b.style.opacity = '0';
+  b.style.transform = 'translateY(16px) scale(.97)';
+  setTimeout(() => { b.style.display = 'none'; }, 370);
 }
 
-window.onload=function(){
-
-const status=localStorage.getItem("cookies");
-
-if(status!=="accepted" && status!=="rejected"){
-document.getElementById("cookieBanner").style.display="flex";
+function showCookieBanner() {
+  const b = document.getElementById('cookieBanner');
+  b.style.display = 'flex';
 }
 
-}
-
+document.addEventListener('DOMContentLoaded', function() {
+  const status = localStorage.getItem('doubleex_cookies');
+  if (status !== 'accepted' && status !== 'rejected') {
+    setTimeout(showCookieBanner, 600);
+  }
+});
 </script>
-
 </body>
 </html>
 
